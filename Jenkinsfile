@@ -5,7 +5,7 @@ ansiColor('xterm') {
     checkout scm
 
     def authorName  = sh(returnStdout: true, script: 'git --no-pager show --format="%an" --no-patch')
-    def isMaster    = env.BRANCH_NAME == "master"
+    def isMain    = env.BRANCH_NAME == "main"
     def serviceName = env.JOB_NAME.tokenize("/")[1]
 
     def commitHash  = sh(returnStdout: true, script: 'git rev-parse HEAD | cut -c-7').trim()
@@ -17,7 +17,7 @@ ansiColor('xterm') {
         echo "Fix tests"
       }
 
-      if(isMaster) {
+      if(isMain) {
         stage ('Build and Push') {
           sh "VERSION=${version} make publish"
         }
