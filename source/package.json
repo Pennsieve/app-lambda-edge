@@ -1,0 +1,18 @@
+{
+  "name": "app-lambda-edge",
+  "version": "1.0.0",
+  "description": "Runs in a Lambda and adds content security policy (CSP) headers.",
+  "main": "app.js",
+  "dependencies": {
+    "aws-sdk": "^2.437.0"
+  },
+  "devDependencies": {
+    "ava": "^1.4.1",
+    "mockery": "^2.1.0",
+    "sinon": "^7.3.1"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/ava ./test/*.spec.js"
+  },
+  "license": "MIT"
+}
