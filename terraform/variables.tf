@@ -17,7 +17,7 @@ variable "bucket" {
 }
 
 variable "runtime" {
-  default = "nodejs10.x"
+  default = "nodejs16.x"
 }
 
 variable "uniq_id" {
