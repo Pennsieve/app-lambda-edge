@@ -15,7 +15,7 @@ if (process.env.AWS_LAMBDA_FUNCTION_NAME.split(".")[1].split("-").length == 5) {
 
 var paramName = '/' + environmentName + '/' + uniqId + 'app-lambda/content-security-policy';
 
-var policies = ['script', 'style' ,'worker', 'img', 'font', 'media', 'frame', 'connect']
+const policies = ['script', 'style' ,'worker', 'img', 'font', 'media', 'frame', 'connect']
 
 var paramNames = {
     Names: policies.map(p => paramName + '/' + p)
@@ -23,6 +23,7 @@ var paramNames = {
 
 // only exported for use in test
 exports.paramNames = paramNames
+exports.policies = policies
 
 function setHeaders(event, contentSecurityPolicy, callback) {
     // if no response, just short circuit
