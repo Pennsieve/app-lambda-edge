@@ -2,6 +2,7 @@
 
 var AWS = require('aws-sdk');
 var ssm = new AWS.SSM({region: 'us-east-1'});
+
 // Parse the environment name from the lambda function name: us-east-1.dev-app-lambda-use1
 var environmentName = process.env.AWS_LAMBDA_FUNCTION_NAME.split(".")[1].split("-")[0];
 
@@ -14,9 +15,14 @@ if (process.env.AWS_LAMBDA_FUNCTION_NAME.split(".")[1].split("-").length == 5) {
 
 var paramName = '/' + environmentName + '/' + uniqId + 'app-lambda/content-security-policy';
 
+var policies = ['script', 'style' ,'worker', 'img', 'font', 'media', 'frame', 'connect']
+
 var paramNames = {
-    Name: paramName
+    Names: policies.map(p => paramName + '/' + p)
 };
+
+// only exported for use in test
+exports.paramNames = paramNames
 
 function setHeaders(event, contentSecurityPolicy, callback) {
     // if no response, just short circuit
@@ -39,11 +45,13 @@ function setHeaders(event, contentSecurityPolicy, callback) {
 };
 
 exports.handler = (event, context, callback) => {
-    ssm.getParameter(paramNames, function(err, data) {
+    ssm.getParameters(paramNames, function(err, data) {
         if (err) {
             console.log(err, err.stack);
+        } else if (data.InvalidParameters && data.InvalidParameters.length > 0) {
+            console.log("invalid parameters", data.InvalidParameters)
         } else {
-           var contentSecurityPolicy = data.Parameter.Value
+           var contentSecurityPolicy = data.Parameters.map(p => p.Value).join(' ')
            setHeaders(event, contentSecurityPolicy, callback);
         }
     })

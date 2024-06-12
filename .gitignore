@@ -1,3 +1,4 @@
 .idea/
 node_modules/
 /source/yarn.lock
+/app-lambda-edge.iml

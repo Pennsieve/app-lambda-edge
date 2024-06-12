@@ -7,12 +7,17 @@
     "aws-sdk": "^2.437.0"
   },
   "devDependencies": {
-    "ava": "^1.4.1",
+    "ava": "^2.4.0",
     "mockery": "^2.1.0",
     "sinon": "^7.3.1"
   },
   "scripts": {
     "test": "./node_modules/.bin/ava ./test/*.spec.js"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "ava": {
+    "environmentVariables": {
+      "AWS_LAMBDA_FUNCTION_NAME": "test-region.test-edge-lambda"
+    }
+  }
 }
