@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Runs in a Lambda and adds content security policy (CSP) headers.",
   "main": "app.js",
+  "type": "module",
   "dependencies": {
-    "aws-sdk": "^2.437.0"
+    "@aws-sdk/client-ssm": "^3.596.0"
   },
   "devDependencies": {
     "ava": "^6.1.3"

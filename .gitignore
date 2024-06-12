@@ -2,3 +2,4 @@
 node_modules/
 /source/yarn.lock
 /app-lambda-edge.iml
+/source/package-lock.json
