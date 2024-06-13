@@ -25,7 +25,7 @@ data "terraform_remote_state" "region" {
 }
 
 // IMPORT LAMBDA S3 BUCKET OBJECT
-data "aws_s3_bucket_object" "s3_bucket_object" {
+data "aws_s3_object" "s3_bucket_object" {
   bucket = var.bucket
   key    = "${var.service_name}-${var.tier}-edge/${var.service_name}-${var.tier}-edge-${var.version_number}.zip"
 }

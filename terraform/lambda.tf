@@ -6,9 +6,9 @@ resource "aws_lambda_function" "lambda_function" {
   handler           = "app.handler"
   publish           = "true"
   runtime           = var.runtime
-  s3_bucket         = data.aws_s3_bucket_object.s3_bucket_object.bucket
-  s3_key            = data.aws_s3_bucket_object.s3_bucket_object.key
-  s3_object_version = data.aws_s3_bucket_object.s3_bucket_object.version_id
+  s3_bucket         = data.aws_s3_object.s3_bucket_object.bucket
+  s3_key            = data.aws_s3_object.s3_bucket_object.key
+  s3_object_version = data.aws_s3_object.s3_bucket_object.version_id
   timeout           = 30
 
   # Edge lambda functions cannot have environment variables
