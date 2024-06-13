@@ -6,18 +6,19 @@ const ssm = new SSMClient({
     region: 'us-east-1'
 });
 
-// Parse the environment name from the lambda function name: us-east-1.dev-app-lambda-use1
-const environmentName = process.env.AWS_LAMBDA_FUNCTION_NAME.split(".")[1].split("-")[0];
+export function parseLambdaFunctionName(name) {
+    // Parse the environment name from the lambda function name: us-east-1.dev-app-lambda-use1
+    const splitFunctionName = name.split(".")[1].split("-")
+    const environmentName = splitFunctionName[0];
 
-// If lambda name contains a uniq-id, get it. Eg. us-east-1.dev-edc-app-lambda-use1
-if (process.env.AWS_LAMBDA_FUNCTION_NAME.split(".")[1].split("-").length == 5) {
-    var uniqId = process.env.AWS_LAMBDA_FUNCTION_NAME.split(".")[1].split("-")[1] + "-";
-} else {
-    var uniqId = "";
+    // If lambda name contains a uniq-id, get it. Eg. us-east-1.dev-edc-app-lambda-use1
+    const uniqueId = splitFunctionName.length === 5 ? splitFunctionName[1] + "-" : ""
+    return {environmentName, uniqueId}
 }
-;
 
-const paramName = '/' + environmentName + '/' + uniqId + 'app-lambda/content-security-policy';
+const {environmentName, uniqueId} = parseLambdaFunctionName(process.env.AWS_LAMBDA_FUNCTION_NAME)
+
+const paramName = '/' + environmentName + '/' + uniqueId + 'app-lambda/content-security-policy';
 
 // exported for testing
 export const policies = ['script', 'style', 'worker', 'img', 'font', 'media', 'frame', 'connect']
