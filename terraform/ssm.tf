@@ -6,7 +6,7 @@ resource "aws_ssm_parameter" "content_security_policy_script" {
 }
 
 resource "aws_ssm_parameter" "content_security_policy_style" {
-  name  = "/${var.environment_name}/${local.resource_name}/content-security-policy/styly"
+  name  = "/${var.environment_name}/${local.resource_name}/content-security-policy/style"
   type  = "String"
   value = var.content_security_policy_style
 }
