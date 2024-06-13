@@ -18,14 +18,14 @@ export function parseLambdaFunctionName(name) {
 
 const {environmentName, uniqueId} = parseLambdaFunctionName(process.env.AWS_LAMBDA_FUNCTION_NAME)
 
-const paramName = '/' + environmentName + '/' + uniqueId + 'app-lambda/content-security-policy';
+const paramName = '/' + environmentName + '/' + uniqueId + 'app-lambda/content-security-policy/';
 
 // exported for testing
 export const policies = ['script', 'style', 'worker', 'img', 'font', 'media', 'frame', 'connect']
 
 // exported for testing
 export const paramNames = {
-    Names: policies.map(p => paramName + '/' + p)
+    Names: policies.map(p => paramName + p)
 };
 
 const command = new GetParametersCommand(paramNames)
