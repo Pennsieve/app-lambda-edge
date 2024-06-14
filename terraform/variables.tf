@@ -1,6 +1,14 @@
 variable "aws_account" {}
 
-variable "content_security_policy" {}
+variable "content_security_policy_script" {}
+variable "content_security_policy_style" {}
+variable "content_security_policy_worker" {}
+variable "content_security_policy_img" {}
+variable "content_security_policy_font" {}
+variable "content_security_policy_media" {}
+variable "content_security_policy_frame" {}
+variable "content_security_policy_connect" {}
+
 
 variable "environment_name" {}
 
@@ -17,7 +25,7 @@ variable "bucket" {
 }
 
 variable "runtime" {
-  default = "nodejs16.x"
+  default = "nodejs20.x"
 }
 
 variable "uniq_id" {

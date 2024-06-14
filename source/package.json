@@ -3,16 +3,21 @@
   "version": "1.0.0",
   "description": "Runs in a Lambda and adds content security policy (CSP) headers.",
   "main": "app.js",
+  "type": "module",
   "dependencies": {
-    "aws-sdk": "^2.437.0"
+    "@aws-sdk/client-ssm": "^3.596.0"
   },
   "devDependencies": {
-    "ava": "^1.4.1",
-    "mockery": "^2.1.0",
-    "sinon": "^7.3.1"
+    "ava": "^6.1.3"
   },
   "scripts": {
     "test": "./node_modules/.bin/ava ./test/*.spec.js"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "ava": {
+    "environmentVariables": {
+      "AWS_LAMBDA_FUNCTION_NAME": "not-a-region.test-xyz-edge-lambda-use1"
+    }
+  },
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
 }
