@@ -55,12 +55,12 @@ export const handler = async (event, context) => {
         return;
     }
     try {
-        const response = await ssm.send(command)
-        if (response.InvalidParameters && response.InvalidParameters.length > 0) {
-            console.log("invalid parameters", response.InvalidParameters)
+        const parametersResponse = await ssm.send(command)
+        if (parametersResponse.InvalidParameters && parametersResponse.InvalidParameters.length > 0) {
+            console.log("invalid parameters", parametersResponse.InvalidParameters)
             return response
         } else {
-            const contentSecurityPolicy = response.Parameters.map(p => p.Value).join(' ')
+            const contentSecurityPolicy = parametersResponse.Parameters.map(p => p.Value).join(' ')
             return setHeaders(response, contentSecurityPolicy);
         }
     } catch (err) {
