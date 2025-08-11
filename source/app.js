@@ -21,7 +21,7 @@ const {environmentName, uniqueId} = parseLambdaFunctionName(process.env.AWS_LAMB
 const paramName = '/' + environmentName + '/' + uniqueId + 'app-lambda/content-security-policy/';
 
 // exported for testing
-export const policies = ['script', 'style', 'worker', 'img', 'font', 'media', 'frame', 'connect']
+export const policies = ['script', 'style', 'worker', 'img', 'font', 'media', 'frame', 'connect', 'object']
 
 // exported for testing
 export const paramNames = {

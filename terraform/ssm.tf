@@ -46,3 +46,9 @@ resource "aws_ssm_parameter" "content_security_policy_connect" {
   type  = "String"
   value = var.content_security_policy_connect
 }
+
+resource "aws_ssm_parameter" "content_security_policy_object" {
+  name  = "/${var.environment_name}/${local.resource_name}/content-security-policy/object"
+  type  = "String"
+  value = var.content_security_policy_object
+}

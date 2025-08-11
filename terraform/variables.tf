@@ -8,7 +8,7 @@ variable "content_security_policy_font" {}
 variable "content_security_policy_media" {}
 variable "content_security_policy_frame" {}
 variable "content_security_policy_connect" {}
-
+variable "content_security_policy_object" {}
 
 variable "environment_name" {}
 
