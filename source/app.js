@@ -62,6 +62,18 @@ export const handler = async (event, context) => {
             return response
         } else {
             const contentSecurityPolicy = parametersResponse.Parameters.map(p => p.Value).join(' ')
+
+            const request = event.Records[0].cf.request;
+
+            // Check if the request is for a .wasm file
+            if (request.uri.endsWith('.wasm')) {
+                // Set the correct MIME type for WebAssembly files
+                response.headers['content-type'] = [{
+                    key: 'Content-Type',
+                    value: 'application/wasm'
+                }];
+            }
+            
             return setHeaders(response, contentSecurityPolicy);
         }
     } catch (err) {

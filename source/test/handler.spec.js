@@ -23,6 +23,9 @@ test('handler() test', async t => {
                 cf: {
                     response: {
                         headers: {}
+                    },
+                    request: {
+                        uri: ''
                     }
                 }
             }
