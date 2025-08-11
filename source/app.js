@@ -42,6 +42,7 @@ export function setHeaders(response, contentSecurityPolicy) {
     headers['x-xss-protection'] = [{key: 'X-XSS-Protection', value: "1; mode=block"}];
     headers['referrer-policy'] = [{key: 'Referrer-Policy', value: "same-origin"}];
     headers['content-security-policy'] = [{key: 'Content-Security-Policy', value: contentSecurityPolicy}];
+    headers['cross-origin-embedder-policy'] = [{key:'Cross-Origin-Embedder-Policy', value:"require-corp"}];
 
     return response
 };
